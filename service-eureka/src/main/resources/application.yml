@@ -17,6 +17,9 @@ eureka:
 
   server:
 #    关闭自我保护机制 默认 true-不关闭 false-关闭
-    enable-self-preservation: false
+    enable-self-preservation: true
 #   设置自我保护机制 阈值 默认 0.85
-    renewal-percent-threshold: 0.75
+#    renewal-percent-threshold: 0.75
+
+#    设置server端剔除不可用服务的时间窗，单位毫秒
+    eviction-interval-timer-in-ms: 4000
