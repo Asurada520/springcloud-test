@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jade.serviceprovider.dao.DepartMapper" >
+
+    <select id="listAllDeparts" resultType="com.jade.serviceprovider.model.DepartEntity">
+        select * from depart_info;
+    </select>
+
+    <insert id="saveDepart" parameterType="com.jade.serviceprovider.model.DepartEntity">
+        insert into depart_info (id, name) values (
+          #{id},
+          #{name}
+        )
+    </insert>
+
+    <delete id="removeDepartById" parameterType="int">
+        delete from depart_info where id = #{id}
+    </delete>
+
+    <update id="modifyDepart" parameterType="com.jade.serviceprovider.model.DepartEntity">
+        update from depart_info  set `name` = #{name} where id = #{id}
+    </update>
+
+    <select id="getDepartById" parameterType="int" resultType="com.jade.serviceprovider.model.DepartEntity">
+        select * from depart_info where id = #{id}
+    </select>
+
+</mapper>
