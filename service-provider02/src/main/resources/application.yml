@@ -18,7 +18,8 @@ eureka:
   #  指定eureka服务中心
   client:
     service-url:
-      defaultZone: http://localhost:8000/eureka
+#      defaultZone: http://localhost:8000/eureka
+      defaultZone: http://eureka8100.com:8100/eureka,http://eureka8200.com:8200/eureka,http://eureka8300.com:8300/eureka
   #  指定当前客户端在注册中心的名称
   instance:
     instance-id: service-provider
@@ -28,6 +29,7 @@ eureka:
     lease-renewal-interval-in-seconds: 1
 #    指定让 server 认定当前client已经失效的时间 将来可以从注册表中删除
     lease-expiration-duration-in-seconds: 3
+
 
 
 mybatis:
@@ -53,3 +55,15 @@ info:
   app.desc: this is starting
   company.name: www.jade.com
   company.addr: cangtian
+
+
+management:
+#  开启所有中断监控
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#  开启shutdown监控终端
+  endpoint:
+    shutdown:
+      enabled: true
