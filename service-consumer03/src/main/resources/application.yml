@@ -1,0 +1,17 @@
+server:
+  port: 8091
+spring:
+  application:
+    name: service-consumer03
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka
+
+
+feign:
+  client:
+    config:
+      default:
+        conectionTimeout: 5000 # 指定Feign连接提供者的超时时间
+        readTimeout: 5000 # 指定Feign从请求到获取提供者响应的超时时间
