@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @RequestMapping("/provider/depart/")
 @RestController
@@ -50,6 +51,13 @@ public class DepartController {
 
     @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
     public Object getHandle(@PathVariable("id") int id) {
+
+//        try {
+//            TimeUnit.SECONDS.sleep(3);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
         DepartEntity departById = departService.getDepartById(id);
         departById.setName(departById.getName()+", port:" + port);
         return departById;
