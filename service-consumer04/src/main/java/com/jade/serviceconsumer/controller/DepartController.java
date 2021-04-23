@@ -58,7 +58,7 @@ public class DepartController {
     public DepartEntity getHystrixHandle(@PathVariable("id") int id){
         DepartEntity departEntity = new DepartEntity();
         departEntity.setId(id);
-        departEntity.setName("no this depart, method111");
+        departEntity.setName("no this depart, method");
         return departEntity;
     }
 }
