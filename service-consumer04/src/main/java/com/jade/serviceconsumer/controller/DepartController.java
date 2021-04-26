@@ -3,6 +3,7 @@ package com.jade.serviceconsumer.controller;
 import com.jade.serviceconsumer.model.DepartEntity;
 import com.jade.serviceconsumer.service.DepartService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/consumer/depart/")
 public class DepartController {
-
-//    @Autowired
-//    private RestTemplate restTemplate;
 
     @Autowired
     private DepartService departService;
@@ -48,7 +46,8 @@ public class DepartController {
         return modifyDepart;
     }
 
-    @HystrixCommand(fallbackMethod = "getHystrixHandle")
+    @HystrixCommand(fallbackMethod = "getHystrixHandle"
+            /*, commandProperties = @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")*/)
     @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
     public DepartEntity getDepartHandle(@PathVariable("id") int id){
         DepartEntity departEntity = departService.getDepartById(id);

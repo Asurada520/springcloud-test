@@ -5,8 +5,10 @@ import com.jade.serviceprovider.model.DepartEntity;
 import com.jade.serviceprovider.service.DepartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class DepartServiceImpl implements DepartService {
@@ -48,6 +50,13 @@ public class DepartServiceImpl implements DepartService {
 
     @Override
     public DepartEntity getDepartById(int id) {
+
+//        try {
+//            TimeUnit.SECONDS.sleep(3);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
         DepartEntity departEntity = departMapper.getDepartById(id);
         return departEntity;
     }

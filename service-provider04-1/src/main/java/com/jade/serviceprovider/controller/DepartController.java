@@ -51,15 +51,15 @@ public class DepartController {
 
     @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
     public Object getHandle(@PathVariable("id") int id) {
-
-//        try {
-//            TimeUnit.SECONDS.sleep(3);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-
         DepartEntity departById = departService.getDepartById(id);
-        departById.setName(departById.getName()+", port:" + port);
+        departById.setName(departById.getName() + ", port:" + port);
+
+        /*try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
+
         return departById;
     }
 

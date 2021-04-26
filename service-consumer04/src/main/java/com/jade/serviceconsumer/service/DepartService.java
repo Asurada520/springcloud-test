@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@FeignClient("service-provider02")
+//@FeignClient(value = "service-provider02", fallbackFactory = DepartFallbackFactory.class)
+@FeignClient(value = "service-provider02", fallback = DepartFallback.class)
 @RequestMapping("/provider/depart/")
 public interface DepartService {
 
