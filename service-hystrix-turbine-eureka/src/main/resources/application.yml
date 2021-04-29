@@ -1,0 +1,27 @@
+server:
+  # 配置服务端口
+  port: 8888
+
+spring:
+  application:
+    name:  service-hystrix-turbine
+
+eureka:
+  client:
+    service-url:
+      # 配置eureka服务器地址
+      defaultZone: http://localhost:8000/eureka
+#      defaultZone: http://${}:${server.port}/eureka
+
+
+turbine:
+#  指定要监控的微服务名称
+#  app-config: service-consumer03
+  app-config: service-consumer01, service-consumer02
+  aggregator:
+#   指定监控的微服务组，default为默认组
+    cluster-config: default
+#    指定监控的微服务名称，默认组的名称为'default'
+  cluster-name-expression: "'default'"
+
+

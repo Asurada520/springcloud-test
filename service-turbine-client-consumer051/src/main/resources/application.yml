@@ -1,0 +1,41 @@
+server:
+  port: 8180
+
+spring:
+  application:
+    name: service-consumer01
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka
+
+feign:
+  client:
+    config:
+      default:
+        conectionTimeout: 5000 # 指定Feign连接提供者的超时时间
+        readTimeout: 5000 # 指定Feign从请求到获取提供者响应的超时时间
+
+# 开启feign 对 hystrix 的支持
+  hystrix:
+    enabled: true
+#修改负载均衡策略
+#service-provider02: # 要负载均衡的提供者微服务名称
+#  ribbon: # 指定要使用的负载均衡策略
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+# 开启 actuator 的相关监控终端
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream

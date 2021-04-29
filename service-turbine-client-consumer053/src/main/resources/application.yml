@@ -1,13 +1,17 @@
 server:
-  port: 8091
+  port: 8380
+
 spring:
   application:
     name: service-consumer03
+
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8000/eureka
-
+  instance:
+    metadata-map:
+      cluster: group1  #自定义 eureka 元数据
 
 feign:
   client:
@@ -32,17 +36,9 @@ hystrix:
           thread:
             timeoutInMilliseconds: 5000
 
-#hystrix:
-#  command:
-#    default:  #default全局有效，service id指定应用有效
-#      execution:
-#        timeout:
-#          enabled: true
-#          # 如果enabled设置为false，则请求超时交给ribbon控制,此时@HystrixProperty(name = "execution.isolation
-#          #.thread.timeoutInMilliseconds", value = "5000")不起效
-#          # 如果enabled设置为true, 则hystrix也有对超时的控制权，@HystrixProperty(name = "execution.isolation
-#          #.thread.timeoutInMilliseconds", value = "5000")起效果
-#          # 且如果enabled设置为true，ribbon，hystrix都有对请求超时的控制权，且控制效果一样
-#        isolation:
-#          thread:
-#            timeoutInMilliseconds: 4000
+# 开启 actuator 的相关监控终端
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream

@@ -54,11 +54,11 @@ public class DepartController {
         DepartEntity departById = departService.getDepartById(id);
         departById.setName(departById.getName() + ", port:" + port);
 
-        /*try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
+//        try {
+//            TimeUnit.SECONDS.sleep(2);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         return departById;
     }
