@@ -110,7 +110,7 @@ public class DepartController {
     public List<Depart> listHandlerHystrix() {
         List<Depart> resList = new ArrayList<>();
         Depart depart = new Depart();
-        depart.setName("no this depart, port: " + port);
+        depart.setName("no this depart list, port: " + port);
         resList.add(depart);
         return resList;
     }

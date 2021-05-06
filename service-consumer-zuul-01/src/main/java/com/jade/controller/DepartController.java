@@ -62,6 +62,10 @@ public class DepartController {
 
     // 定义服务降级方法，即响应给客户端的备选方案
     public Depart getHystrixHandler(@PathVariable("id") int id, HttpServletRequest request) {
+
+        System.out.println("token = " + request.getHeader("token"));
+        System.out.println("Set-Cookie = " + request.getHeader("Set-Cookie"));
+
         String remoteAddr = request.getRemoteAddr();
         String key = remoteAddr + "_getHystrixHandler";
 
@@ -110,7 +114,7 @@ public class DepartController {
     public List<Depart> listHandlerHystrix() {
         List<Depart> resList = new ArrayList<>();
         Depart depart = new Depart();
-        depart.setName("no this depart, port: " + port);
+        depart.setName("no this depart list, port: " + port);
         resList.add(depart);
         return resList;
     }
