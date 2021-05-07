@@ -1,0 +1,30 @@
+server:
+  # 配置服务端口
+  port: 9000
+
+spring:
+  application:
+    name:  service-zuul
+
+eureka:
+  client:
+    service-url:
+      # 配置eureka服务器地址
+      defaultZone: http://localhost:8000/eureka
+
+zuul:
+#  指定微服务的理由规则
+  routes:
+    service-consumer-8080: /zuul8080/**
+    service-consumer-8090: /zuul8090/**
+    service-consumer: /zuul/**
+#    屏蔽微服务名称
+#  ignored-services: service-consumer-8080
+#    屏蔽所有微服务名称
+  ignored-services: "*"
+#  指定统一前缀
+  prefix: /jade
+#  屏蔽指定的URI
+  ignored-patterns: /**/list/**
+#  屏蔽指定的敏感头信息，其会将原来默认的Cookie, setCookie , Authorization 放开
+  sensitive-headers: token
