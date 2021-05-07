@@ -17,6 +17,7 @@ zuul:
   routes:
     service-consumer-8080: /zuul8080/**
     service-consumer-8090: /zuul8090/**
+    service-consumer: /zuul/**
 #    屏蔽微服务名称
 #  ignored-services: service-consumer-8080
 #    屏蔽所有微服务名称
