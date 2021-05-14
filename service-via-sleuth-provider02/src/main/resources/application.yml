@@ -1,0 +1,77 @@
+server:
+  port: 8090
+
+spring:
+  application:
+#    指定当前微服务对外暴露的名称
+    name: service-provider02
+  datasource:
+    name: test
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&charaterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  zipkin:
+    # 指定zipkin服务器地址
+    base-url: http://localhost:9411/
+  sleuth:
+#    设置采样比列为1.0， 即全部需要，默认为0.1
+    sampler:
+      probability: 1.0
+
+eureka:
+  #  指定eureka服务中心
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka
+#      defaultZone: http://eureka8100.com:8100/eureka,http://eureka8200.com:8200/eureka,http://eureka8300.com:8300/eureka
+  #  指定当前客户端在注册中心的名称
+  instance:
+    instance-id: service-provider
+#    使用IP地址注册
+    prefer-ip-address: true
+#     设置当前client 每一秒向 server 发送一次心跳 最为检测信息 默认是30s
+    lease-renewal-interval-in-seconds: 1
+#    指定让 server 认定当前client已经失效的时间 将来可以从注册表中删除
+    lease-expiration-duration-in-seconds: 3
+
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.jade.serviceprovider.model
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+#  pattern:
+#    console: level-%level %msg%n
+  level:
+    root: info
+    org.hibernate: info
+    org.hibernate.type.descripter.sql.BasicBinder: trace
+    org.hibernate.type.descripter.sql.BasicExtractor: trace
+    com.abc.msc: debug
+
+# 设置info 监控中断显示信息
+info:
+  auth: asurada
+  app.name: jade
+  app.desc: this is starting
+  company.name: www.jade.com
+  company.addr: cangtian
+
+
+management:
+#  开启所有中断监控
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#  开启shutdown监控终端
+  endpoint:
+    shutdown:
+      enabled: true

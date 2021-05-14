@@ -1,0 +1,10 @@
+# bootstrap.yml 在应用启动时加载，一般用于配置应用启动过程中所需要的数据，即若没有这些配置，则应用无法启动
+# application.yml 在引用启动时加载，一般用于配置应用运行过程中所需要的数据，即若没有这些配置，则应用无法运行
+
+spring:
+  cloud:
+    config:
+      uri: http://localhost:9999/
+      label: master
+      name: application
+      profile: dev
