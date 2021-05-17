@@ -10,7 +10,7 @@ spring:
     sender:
       type: kafka
   kafka:
-      bootstrap-servers: kafkaOS:9092
+      bootstrap-servers: localhost:9092
   sleuth:
       # 设置采样比列为1.0， 即全部需要，默认为0.1
       sampler:
