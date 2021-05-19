@@ -17,6 +17,12 @@ spring:
         output: #指定要输出的消息主题和类型
           destination: names
           content-type: text/plain
+        test: # 指定自定义 要输出的消息主题和类型
+          destination: citys
+          content-type: text/plain
+
+        input:
+          destination: names
 
 eureka:
   client:
